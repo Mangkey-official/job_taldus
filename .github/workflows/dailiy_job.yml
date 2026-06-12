@@ -1,0 +1,26 @@
+name: Daily Job Crawler
+on:
+  schedule:
+    - cron: '0 22 * * *' # 한국 시간 아침 7시는 UTC 22시입니다.
+  workflow_dispatch: # 테스트를 위해 수동 실행 버튼을 만듭니다.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install selenium webdriver-manager python-telegram-bot
+
+      - name: Run Crawler
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python apply.py
