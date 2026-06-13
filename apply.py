@@ -13,8 +13,8 @@ from telegram import Bot
 from telegram.error import InvalidToken, TelegramError
 
 # --- 설정 구간 ---
-TOKEN = '8837154747:AAGml9Wh7NC1GNiCPZMt1IDd1rpG-G-dfOk'
-CHAT_ID = '2035161254'
+TOKEN = os.environ.get('TELEGRAM_TOKEN')
+CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 HISTORY_FILE = 'history.txt'
 
 URL_BASE = "https://www.jobkorea.co.kr/Search/?stext=정보보안&careerType=2&cotype=1,4&Page_No="
